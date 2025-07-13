@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "solidity-ast": "^0.4.60"
+  },
+  "peerDependencies": {
+    "hardhat": "^3.0.0-next.21"
   }
 }
