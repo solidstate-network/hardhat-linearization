@@ -9,6 +9,7 @@
     "dist",
     "src"
   ],
+  "type": "module",
   "scripts": {
     "build": "tsc -b tsconfig.dist.json",
     "prepare": "npm run build"
