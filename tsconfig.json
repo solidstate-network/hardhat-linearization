@@ -3,7 +3,7 @@
     "noEmit": true,
     "incremental": true,
     "target": "es2020",
-    "module": "commonjs",
+    "module": "node16",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
