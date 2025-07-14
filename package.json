@@ -20,6 +20,7 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-utils": "3.0.0-next.21",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@tsconfig/node22": "^22.0.2",
     "hardhat": "^3.0.0-next.21",
     "husky": "^9.1.7",
     "knip": "^5.61.3",

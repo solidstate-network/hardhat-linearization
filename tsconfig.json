@@ -1,13 +1,11 @@
 {
+  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "noEmit": true,
-    "incremental": true,
-    "target": "es2020",
-    "module": "node16",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true
-  }
+    "declaration": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": ".tsbuildinfo"
+  },
+  "include": ["src"]
 }
