@@ -12,7 +12,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b tsconfig.dist.json",
-    "prepare": "npm run build"
+    "prepare": "pnpm build"
   },
   "devDependencies": {
     "hardhat": "^3.0.0-next.21",
