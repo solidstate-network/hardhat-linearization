@@ -5,6 +5,7 @@ import {
   parseFullyQualifiedName,
   getFullyQualifiedName,
 } from 'hardhat/utils/contract-names';
+import { SolcOutput } from 'solidity-ast/solc.js';
 import { astDereferencer, findAll } from 'solidity-ast/utils.js';
 
 interface TaskActionArguments {
@@ -29,18 +30,17 @@ const action: NewTaskActionFunction<TaskActionArguments> = async (
     ));
     fullName = getFullyQualifiedName(sourceName, contractName);
   }
+  // TODO: throw if build info not found (contract was not compiled by HH)
   const buildInfoId = await hre.artifacts.getBuildInfoId(fullName);
   const buildInfoPath = await hre.artifacts.getBuildInfoOutputPath(
     buildInfoId!,
   );
-  const buildInfo = await readJsonFile(buildInfoPath!);
-  if (buildInfo === undefined) {
-    throw new Error('Build info not found');
-  }
+  // TODO: BuildInfo type
+  const buildInfo: { output: SolcOutput } = await readJsonFile(buildInfoPath!);
   const deref = astDereferencer(buildInfo.output);
   for (const c of findAll(
     'ContractDefinition',
-    buildInfo.output.sources[`project/${sourceName}`]!.ast,
+    buildInfo.output.sources[`project/${sourceName}`].ast,
   )) {
     if (c.name === contractName) {
       const list = c.linearizedBaseContracts.map(
