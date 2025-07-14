@@ -1,7 +1,8 @@
+import { TASK_LINEARIZATION } from './task_names.js';
 import { task } from 'hardhat/config';
 import { HardhatPlugin } from 'hardhat/types/plugins';
 
-const taskPrintLinearization = task('print-linearization')
+const taskPrintLinearization = task(TASK_LINEARIZATION)
   .addPositionalArgument({
     name: 'contract',
     description:
