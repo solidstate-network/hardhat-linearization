@@ -1,8 +1,10 @@
+import pkg from '../package.json' with { type: 'json' };
 import taskPrintLinearization from './tasks/linearization.js';
 import { HardhatPlugin } from 'hardhat/types/plugins';
 
 const plugin: HardhatPlugin = {
-  id: 'hardhat-linearization',
+  id: pkg.name,
+  npmPackage: pkg.name,
   dependencies: [
     async () => {
       const { default: HardhatSolidstateUtils } = await import(
