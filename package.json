@@ -2,25 +2,32 @@
   "name": "@solidstate/hardhat-linearization",
   "version": "0.1.1",
   "description": "Hardhat plugin to print Solidity linearization",
-  "author": "Francisco Giordano, Nick Barry",
   "license": "MIT",
+  "author": "Francisco Giordano, Nick Barry",
+  "type": "module",
   "main": "dist/plugin.js",
   "files": [
     "dist",
     "src"
   ],
-  "type": "module",
   "scripts": {
     "build": "tsc -b tsconfig.dist.json",
-    "prepare": "pnpm build"
-  },
-  "devDependencies": {
-    "@nomicfoundation/hardhat-utils": "3.0.0-next.21",
-    "hardhat": "^3.0.0-next.21",
-    "typescript": "^5.8.3"
+    "prepare": "husky"
   },
   "dependencies": {
     "solidity-ast": "^0.4.60"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-utils": "3.0.0-next.21",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "hardhat": "^3.0.0-next.21",
+    "husky": "^9.1.7",
+    "knip": "^5.61.3",
+    "lint-staged": "github:ItsNickBarry/lint-staged#knip",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.18",
+    "prettier-plugin-solidity": "^2.1.0",
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "hardhat": "^3.0.0-next.21"
