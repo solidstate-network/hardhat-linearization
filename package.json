@@ -5,7 +5,9 @@
   "license": "MIT",
   "author": "Francisco Giordano, Nick Barry",
   "type": "module",
-  "main": "dist/plugin.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "files": [
     "dist",
     "src"
