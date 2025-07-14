@@ -1,5 +1,6 @@
 import { getLinearization } from '../lib/linearize.js';
 import { printLinearization } from '../lib/print.js';
+import { TASK_COMPILE } from '../task_names.js';
 import { NewTaskActionFunction } from 'hardhat/types/tasks';
 
 interface TaskActionArguments {
@@ -12,7 +13,7 @@ const action: NewTaskActionFunction<TaskActionArguments> = async (
   hre,
 ) => {
   if (!args.noCompile) {
-    await hre.tasks.getTask('compile').run({ quiet: true });
+    await hre.tasks.getTask(TASK_COMPILE).run({ quiet: true });
   }
 
   const linearization = await getLinearization(hre, args.contract);
