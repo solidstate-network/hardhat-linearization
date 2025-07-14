@@ -12,6 +12,9 @@ importers:
         specifier: ^0.4.60
         version: 0.4.60
     devDependencies:
+      '@nomicfoundation/hardhat-utils':
+        specifier: 3.0.0-next.21
+        version: 3.0.0-next.21
       hardhat:
         specifier: ^3.0.0-next.21
         version: 3.0.0-next.21
