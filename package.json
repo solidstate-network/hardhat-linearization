@@ -31,6 +31,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
+    "@nomicfoundation/hardhat-utils": "3.0.0-next.21",
     "hardhat": "^3.0.0-next.21"
   }
 }
