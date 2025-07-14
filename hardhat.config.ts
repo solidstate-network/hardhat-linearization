@@ -1,10 +1,12 @@
+import HardhatLinearization from './src/index.js';
 import { HardhatUserConfig } from 'hardhat/config';
-import HardhatLinearization from './src/index.js'
 
-export default <HardhatUserConfig> {
+const config: HardhatUserConfig = {
   solidity: '0.8.9',
-  plugins:[HardhatLinearization],
+  plugins: [HardhatLinearization],
   typechain: {
     dontOverrideCompile: true,
   },
 };
+
+export default config;
