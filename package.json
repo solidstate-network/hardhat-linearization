@@ -13,8 +13,11 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc -b tsconfig.dist.json",
-    "prepare": "husky"
+    "build": "pnpm clean && tsc --build",
+    "clean": "rm -rf dist/",
+    "prepare": "husky",
+    "prepublishOnly": "pnpm build",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "solidity-ast": "^0.4.60"
