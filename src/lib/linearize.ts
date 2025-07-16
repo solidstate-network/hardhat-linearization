@@ -1,19 +1,17 @@
 import { readJsonFile } from '@nomicfoundation/hardhat-utils/fs';
 import type { ArtifactManager } from 'hardhat/types/artifacts';
 import type { HardhatRuntimeEnvironment } from 'hardhat/types/hre';
+import { SolidityBuildInfoOutput } from 'hardhat/types/solidity';
 import {
   isFullyQualifiedName,
   parseFullyQualifiedName,
-  getFullyQualifiedName,
 } from 'hardhat/utils/contract-names';
-import type { SolcOutput } from 'solidity-ast/solc.js';
 import { astDereferencer, findAll } from 'solidity-ast/utils.js';
 
 const getBuildInfo = async (
   artifacts: ArtifactManager,
   contractNameOrFullyQualifiedName: string,
-): Promise<{ output: SolcOutput }> => {
-  // TODO: BuildInfo type
+): Promise<SolidityBuildInfoOutput> => {
   // TODO: throw if build info not found (contract was not compiled by HH)
   const buildInfoId = await artifacts.getBuildInfoId(
     contractNameOrFullyQualifiedName,
