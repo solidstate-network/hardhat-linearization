@@ -1,4 +1,6 @@
+import pkg from '../../package.json' with { type: 'json' };
 import { readJsonFile } from '@nomicfoundation/hardhat-utils/fs';
+import { HardhatPluginError } from 'hardhat/plugins';
 import type { ArtifactManager } from 'hardhat/types/artifacts';
 import type { HardhatRuntimeEnvironment } from 'hardhat/types/hre';
 import { SolidityBuildInfoOutput } from 'hardhat/types/solidity';
@@ -16,9 +18,12 @@ export const getLinearization = async (
     contractNameOrFullyQualifiedName,
   );
 
-  // TODO: throw if build info not found (contract was not compiled by HH)
+  if (!artifact.buildInfoId) {
+    throw new HardhatPluginError(pkg.name, `build info id not found`);
+  }
+
   const buildInfoPath = await hre.artifacts.getBuildInfoOutputPath(
-    artifact.buildInfoId!,
+    artifact.buildInfoId,
   );
   const buildInfo = (await readJsonFile(
     buildInfoPath!,
