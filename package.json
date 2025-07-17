@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-utils": "3.0.0-next.21",
+    "@solidstate/contracts": "1.0.0-next.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^24.0.13",
