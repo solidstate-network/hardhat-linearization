@@ -1,6 +1,6 @@
 {
   "name": "@solidstate/hardhat-linearization",
-  "version": "1.0.0-next.0",
+  "version": "1.0.0-next.1",
   "description": "Hardhat plugin to print Solidity linearization",
   "license": "MIT",
   "author": "Francisco Giordano, Nick Barry",
