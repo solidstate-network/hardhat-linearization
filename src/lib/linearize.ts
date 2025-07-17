@@ -1,13 +1,8 @@
 import pkg from '../../package.json' with { type: 'json' };
 import { readJsonFile } from '@nomicfoundation/hardhat-utils/fs';
 import { HardhatPluginError } from 'hardhat/plugins';
-import type { ArtifactManager } from 'hardhat/types/artifacts';
 import type { HardhatRuntimeEnvironment } from 'hardhat/types/hre';
 import { SolidityBuildInfoOutput } from 'hardhat/types/solidity';
-import {
-  isFullyQualifiedName,
-  parseFullyQualifiedName,
-} from 'hardhat/utils/contract-names';
 import { astDereferencer, findAll } from 'solidity-ast/utils.js';
 
 export const getLinearization = async (
