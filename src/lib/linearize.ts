@@ -8,38 +8,30 @@ import {
 } from 'hardhat/utils/contract-names';
 import { astDereferencer, findAll } from 'solidity-ast/utils.js';
 
-const getBuildInfo = async (
-  artifacts: ArtifactManager,
-  contractNameOrFullyQualifiedName: string,
-): Promise<SolidityBuildInfoOutput> => {
-  // TODO: throw if build info not found (contract was not compiled by HH)
-  const buildInfoId = await artifacts.getBuildInfoId(
-    contractNameOrFullyQualifiedName,
-  );
-  const buildInfoPath = await artifacts.getBuildInfoOutputPath(buildInfoId!);
-  return await readJsonFile(buildInfoPath!);
-};
-
 export const getLinearization = async (
   hre: Pick<HardhatRuntimeEnvironment, 'artifacts'>,
   contractNameOrFullyQualifiedName: string,
 ): Promise<string[]> => {
-  const { sourceName, contractName, inputSourceName } =
-    await hre.artifacts.readArtifact(contractNameOrFullyQualifiedName);
-
-  const { output } = await getBuildInfo(
-    hre.artifacts,
+  const artifact = await hre.artifacts.readArtifact(
     contractNameOrFullyQualifiedName,
   );
 
-  const deref = astDereferencer(output);
+  // TODO: throw if build info not found (contract was not compiled by HH)
+  const buildInfoPath = await hre.artifacts.getBuildInfoOutputPath(
+    artifact.buildInfoId!,
+  );
+  const buildInfo = (await readJsonFile(
+    buildInfoPath!,
+  )) as SolidityBuildInfoOutput;
+
+  const deref = astDereferencer(buildInfo.output);
 
   const contractDefinitions = findAll(
     'ContractDefinition',
-    output.sources[inputSourceName!].ast,
+    buildInfo.output.sources[artifact.inputSourceName!].ast,
   );
 
   return contractDefinitions
-    .find((c) => c.name === contractName)!
+    .find((c) => c.name === artifact.contractName)!
     .linearizedBaseContracts.map((id) => deref('ContractDefinition', id).name);
 };
