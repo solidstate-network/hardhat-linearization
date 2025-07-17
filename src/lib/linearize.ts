@@ -20,29 +20,12 @@ const getBuildInfo = async (
   return await readJsonFile(buildInfoPath!);
 };
 
-const parseContractNameOrFullyQualifiedName = async (
-  artifacts: ArtifactManager,
-  contractNameOrFullyQualifiedName: string,
-): Promise<ReturnType<typeof parseFullyQualifiedName>> => {
-  if (isFullyQualifiedName(contractNameOrFullyQualifiedName)) {
-    return parseFullyQualifiedName(contractNameOrFullyQualifiedName);
-  } else {
-    const { sourceName, contractName } = await artifacts.readArtifact(
-      contractNameOrFullyQualifiedName,
-    );
-    return { sourceName, contractName };
-  }
-};
-
 export const getLinearization = async (
   hre: Pick<HardhatRuntimeEnvironment, 'artifacts'>,
   contractNameOrFullyQualifiedName: string,
 ): Promise<string[]> => {
-  const { sourceName, contractName } =
-    await parseContractNameOrFullyQualifiedName(
-      hre.artifacts,
-      contractNameOrFullyQualifiedName,
-    );
+  const { sourceName, contractName, inputSourceName } =
+    await hre.artifacts.readArtifact(contractNameOrFullyQualifiedName);
 
   const { output } = await getBuildInfo(
     hre.artifacts,
@@ -53,7 +36,7 @@ export const getLinearization = async (
 
   const contractDefinitions = findAll(
     'ContractDefinition',
-    output.sources[`project/${sourceName}`].ast,
+    output.sources[inputSourceName!].ast,
   );
 
   return contractDefinitions
