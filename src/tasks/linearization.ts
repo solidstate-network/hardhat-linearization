@@ -11,5 +11,5 @@ export default task(TASK_LINEARIZATION)
     name: 'noCompile',
     description: "Don't compile before running this task",
   })
-  .setAction(import.meta.resolve('../actions/linearization.js'))
+  .setAction(() => import('../actions/linearization.js'))
   .build();
