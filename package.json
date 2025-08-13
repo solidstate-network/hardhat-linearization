@@ -22,7 +22,7 @@
     "test": "pnpm clean && hardhat compile && tsx --test --experimental-test-coverage"
   },
   "dependencies": {
-    "@solidstate/hardhat-solidstate-utils": "1.0.0-next.4",
+    "@solidstate/hardhat-solidstate-utils": "^1.0.0-next.4",
     "solidity-ast": "^0.4.60"
   },
   "devDependencies": {
