@@ -17,11 +17,11 @@ pnpm add -D @solidstate/hardhat-linearization
 Load plugin in Hardhat config:
 
 ```javascript
-import HardhatLinearization from '@solidstate/hardhat-linearization';
+import hardhatLinearization from '@solidstate/hardhat-linearization';
 
 const config: HardhatUserConfig = {
   plugins: [
-    HardhatLinearization,
+    hardhatLinearization,
   ],
 };
 ```

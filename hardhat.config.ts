@@ -1,4 +1,4 @@
-import HardhatLinearization from './src/index.js';
+import hardhatLinearization from './src/index.js';
 import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
@@ -6,7 +6,7 @@ const config: HardhatUserConfig = {
     version: '0.8.30',
     npmFilesToBuild: ['@solidstate/contracts/token/fungible/FungibleToken.sol'],
   },
-  plugins: [HardhatLinearization],
+  plugins: [hardhatLinearization],
 };
 
 export default config;
