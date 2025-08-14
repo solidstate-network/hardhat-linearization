@@ -4,9 +4,7 @@ import { HardhatUserConfig } from 'hardhat/config';
 const config: HardhatUserConfig = {
   solidity: {
     version: '0.8.30',
-    dependenciesToCompile: [
-      '@solidstate/contracts/token/fungible/FungibleToken.sol',
-    ],
+    npmFilesToBuild: ['@solidstate/contracts/token/fungible/FungibleToken.sol'],
   },
   plugins: [HardhatLinearization],
 };
